@@ -88,7 +88,8 @@ const getStatePopulation = async (req, res) => {
   const stateCode = req.params.state.toUpperCase();
   const stateData = data.states.find((state) => state.code === stateCode);
   if (stateData) {
-    res.json({ state: stateData.state, population: stateData.population });
+    const population = stateData.population.toLocaleString();
+    res.json({ state: stateData.state, population: population });
   } else {
     res.status(400).json({ message: "Invalid state abbreviation parameter" });
   }
